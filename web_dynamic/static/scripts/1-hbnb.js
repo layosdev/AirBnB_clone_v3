@@ -1,22 +1,13 @@
 $(function () {
-    const amenitiesList = []
-    const namesList = []
-    $('.amenities ul li').change( () => {
-        if ($('.amenities ul li input').is(':checked')){
-            amenitiesList.push($('.amenities ul li input').attr('data-id'));
-            namesList.push($('.amenities ul li input').attr('data-name'))
-            // console.log('GUARDADO!')
+    const amenityList = {}
+    $(".amenities ul li").on('change', "input[type=checkbox]",function(){
+        if ($(this).is(':checked')) {
+            amenityList[$(this).attr('data-name')] = $(this).attr('data-id');
         }
-        else {
-            const index = amenitiesList.indexOf($('.amenities ul li input').attr('data-id'))
-            if (index > -1){
-                amenitiesList.splice(index, 1);
-                namesList.splice(index, 1);
-                // console.log('BORRADO')
-            }
+        else{
+            delete amenityList[$(this).attr('data-name')];
         }
-        console.log(amenitiesList)
-        console.log(namesList)
-
+        const amenityKeys = Object.keys(amenityList);
+        $('.amenities h4').text(amenityKeys.join(', '));
     });
 });
