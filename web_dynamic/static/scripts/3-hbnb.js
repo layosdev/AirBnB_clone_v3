@@ -22,4 +22,17 @@ $(function () {
     const amenityKeys = Object.keys(amenityList);
     $('.amenities h4').text(amenityKeys.join(', '));
   });
+
+  $.ajax({
+    url: 'http://localhost:5001/api/v1/places_search/',
+    data: {},
+    type: 'POST',
+    dataType: 'json',
+    headers: { 'Content-Type': 'application/json' },
+    success: function (json) {
+      for (const i of json) {
+        console.log(i);
+      }
+    }
+  });
 });
