@@ -20,7 +20,13 @@ $(function () {
       delete amenityList[$(this).attr('data-name')];
     }
     const amenityKeys = Object.keys(amenityList);
-    $('.amenities h4').text(amenityKeys.join(', '));
+    if (amenityKeys.length > 0)
+    {
+      $('.amenities h4').text(amenityKeys.join(', '));
+    }
+    else {
+      $('.amenities h4').text('-');
+    }
     console.log(amenityList);
   });
 
@@ -41,9 +47,22 @@ $(function () {
       }
     }
     const statesKeys = Object.keys(statesList);
-    $('.locations h4').text(statesKeys.join(', '));
+    const citiesKeys = Object.keys(citiesList);
+    if (statesKeys.length >= 0)
+    {
+      $('.locations h4').text(statesKeys.join(', '));
+    }
+    else {
+      $('.locations h4').text('  -');
+    }
+    if (citiesKeys.length > 0)
+    {
+      $('.locations h5').text(citiesKeys.join(', '));
+    }
+    else {
+      $('.locations h5').text(' - ');
+    }
     console.log('States:', statesList);
-    console.log('cities:', citiesList);
   });
 
   $.ajax({
