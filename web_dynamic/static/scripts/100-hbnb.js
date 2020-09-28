@@ -96,7 +96,7 @@ $(function () {
   $('.filters button').click(function () {
     $.ajax({
       url: 'http://localhost:5001/api/v1/places_search/',
-      data: JSON.stringify({ amenities: Object.values(amenityList) }),
+      data: JSON.stringify({ amenities: Object.values(amenityList), states: Object.values(statesList), cities: Object.values(citiesList) }),
       type: 'POST',
       dataType: 'json',
       headers: { 'Content-Type': 'application/json' },
